@@ -1,180 +1,285 @@
-# HealthTech Crew - Smart Preventive Healthcare Platform
+# Łódź w Ruchu 🏃‍♀️🏙️
 
-A modern, colorful TypeScript web application that combines personal healthcare management with Smart City insights to promote preventive care and citizen wellbeing.
+**Gra strategiczno-zdrowotna Smart City dla mieszkańców Łodzi**
 
-## 🌟 Features
-
-### Core Healthcare Management
-
-- **Dashboard**: Personalized health overview with key metrics and quick access to all features
-- **Messages**: Secure communication with healthcare providers
-- **AI Recommendations**: Adaptive health insights powered by AI analysis
-- **Treatment Plan**: Track daily health goals with progress monitoring
-- **Appointments**: Manage upcoming and past healthcare visits
-- **Lab Results**: View and track laboratory test results
-- **Symptom Check**: AI-powered symptom analysis and triage guidance
-
-### Smart City Integration
-
-- **Air Quality Monitoring**: Real-time AQI data with pollutant breakdown
-- **Pollen Tracking**: Allergy-friendly pollen level forecasts
-- **Walking Routes**: Health-optimized routes based on air quality and green spaces
-- **Health Campaigns**: Community health screenings and educational programs
-- **District Analytics**: Preventive care participation and health scores by district
-
-## 🎨 Design Features
-
-- **Modern Aesthetic**: Pastel colors with glassmorphism and soft neo-brutalism
-- **Smooth Animations**: Framer Motion for delightful user interactions
-- **Responsive Design**: Mobile-first approach with full tablet and desktop support
-- **Accessibility**: WCAG AA compliant with keyboard navigation and ARIA support
-- **Dark Mode**: Persistent theme switching with localStorage
-
-## 🛠️ Technology Stack
-
-- **Framework**: Next.js 15 with App Router and TypeScript
-- **UI Components**: shadcn/ui + Tailwind CSS
-- **Icons**: Lucide React
-- **State Management**: Zustand
-- **Data Fetching**: TanStack Query (React Query)
-- **Form Validation**: Zod + React Hook Form
-- **Animations**: Framer Motion
-- **Localization**: English (en-GB)
-
-## 📁 Project Structure
-
-```
-healthtech-crew/
-├── app/
-│   ├── (dashboard)/          # Dashboard components
-│   ├── ai-recommendations/   # AI recommendations page
-│   ├── lab-results/          # Lab results page
-│   ├── messages/             # Messaging interface
-│   ├── smart-city/           # Smart City insights
-│   ├── symptom-check/        # Symptom checker
-│   ├── treatment-plan/       # Treatment plan tracker
-│   ├── visits/               # Appointments management
-│   ├── layout.tsx            # Root layout
-│   ├── page.tsx              # Home page
-│   ├── providers.tsx         # React Query provider
-│   └── globals.css           # Global styles
-├── components/
-│   ├── core/                 # Shared components
-│   │   ├── Header.tsx
-│   │   ├── Sidebar.tsx
-│   │   ├── KpiCard.tsx
-│   │   ├── ProgressBar.tsx
-│   │   ├── EmptyState.tsx
-│   │   └── ConfirmDialog.tsx
-│   └── ui/                   # shadcn/ui components
-├── lib/
-│   ├── api.ts                # Mock API with simulated delays
-│   ├── types.ts              # TypeScript type definitions
-│   ├── store.ts              # Zustand state management
-│   └── utils.ts              # Utility functions
-└── README.md
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+ 
-- pnpm (recommended) or npm
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd healthtech-crew
-```
-
-2. Install dependencies:
-```bash
-pnpm install
-```
-
-3. Run the development server:
-```bash
-pnpm dev
-```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-### Build for Production
-
-```bash
-pnpm build
-pnpm start
-```
-
-## 🎯 Key Components
-
-### Mock API
-
-The application uses an in-memory mock API with simulated network delays (300-600ms) to demonstrate realistic data fetching patterns. All data is stored in `lib/api.ts` and can be easily replaced with real API endpoints.
-
-### State Management
-
-Zustand provides lightweight global state for:
-- User authentication
-- Theme preferences (persisted to localStorage)
-
-### Data Fetching
-
-TanStack Query handles:
-- Automatic caching and refetching
-- Loading and error states
-- Optimistic updates
-- Query invalidation
-
-## 🌈 Color Palette
-
-- **Primary** (Indigo): `oklch(0.66 0.15 280)` - Main brand color
-- **Secondary** (Mint): `oklch(0.85 0.08 160)` - Success and positive actions
-- **Accent** (Peach): `oklch(0.88 0.08 40)` - Highlights and CTAs
-- **Muted** (Lavender): `oklch(0.90 0.05 300)` - Backgrounds and subtle elements
-
-## ♿ Accessibility
-
-- Semantic HTML structure
-- ARIA labels and roles
-- Keyboard navigation support
-- Focus indicators
-- Color contrast compliance (WCAG AA)
-- Screen reader friendly
-
-## 📱 Responsive Breakpoints
-
-- **Mobile**: < 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: > 1024px
-
-## 🔮 Future Enhancements
-
-- Real-time notifications
-- Calendar integration
-- Wearable device sync
-- Telemedicine video calls
-- Prescription management
-- Health insurance integration
-- Multi-language support
-- Progressive Web App (PWA)
-
-## 📄 License
-
-This project is created for demonstration purposes.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📧 Support
-
-For questions or support, please contact the development team.
+Łódź w Ruchu to interaktywna aplikacja webowa, która zamienia miasto w grę - zachęcając mieszkańców do aktywności fizycznej, profilaktyki zdrowotnej i integracji społecznej poprzez rywalizację drużyn o terytoria miejskie.
 
 ---
 
-**Built with ❤️ using Next.js and TypeScript**
+## 🎯 Czym jest Łódź w Ruchu?
+
+Aplikacja łączy elementy **gamifikacji**, **zdrowia publicznego** i **Smart City**, tworząc ekosystem, w którym:
+
+- 🏆 **Drużyny** rywalizują o terytoria w różnych dzielnicach Łodzi
+- 👥 **Sąsiedzi** organizują wspólne wyjścia (spacery, biegi, nordic walking)
+- 🎁 **Punkty** zdobywane za aktywność można wymieniać na nagrody lokalne
+- 🌱 **Dane środowiskowe** (jakość powietrza, pyłki) pomagają planować aktywności
+- 📊 **Panel zdrowotny** przypomina o badaniach profilaktycznych
+
+---
+
+## ✨ Główne Funkcje
+
+### 🗺️ Bitwa Drużyn o Miasto
+- Interaktywna mapa Łodzi podzielona na terytoria
+- Drużyny przejmują obszary poprzez aktywność fizyczną
+- Kolory drużyn wizualizują kontrolowane tereny
+- Ranking drużyn z punktami i statystykami
+
+### 🚶 Sąsiedzkie Wyjścia
+- Organizuj i dołączaj do lokalnych wydarzeń
+- Wspólne spacery, biegi, nordic walking
+- System punktów za uczestnictwo
+- Integracja społeczności lokalnej
+
+### 🎁 Strefa Nagród
+- Wymiana punktów na nagrody od lokalnych partnerów
+- Zniżki, vouchery, darmowe wejściówki
+- Ranking drużyn z nagrodami sezonowymi
+- Motywacja do regularnej aktywności
+
+### 🌍 Smart City Łódź
+- **Jakość powietrza** - dane AQI w czasie rzeczywistym
+- **Poziom pyłków** - informacje dla alergików
+- **Trasy spacerowe** - ocena zieleni i jakości powietrza
+- **Kampanie miejskie** - wydarzenia profilaktyczne
+- **Analityka dzielnic** - statystyki zdrowia publicznego
+
+### 💊 Panel Zdrowotny
+- Historia badań i przypomnienia
+- Rekomendacje AI dotyczące profilaktyki
+- Kalendarz badań dopasowany do profilu
+- Mapa punktów badań w Łodzi
+
+### ♿ Dostępność WCAG AA
+- **Kontrola kontrastu** - 3 poziomy (normalny, wysoki, maksymalny)
+- **Rozmiar czcionki** - 4 opcje (mały, normalny, duży, bardzo duży)
+- **Tryb ciemny** - automatyczne przełączanie
+- **Nawigacja klawiaturą** - pełne wsparcie
+- **Focus states** - wyraźne wskaźniki fokusa
+
+---
+
+## 🛠️ Stack Technologiczny
+
+### Frontend
+- **Next.js 15** - React framework z App Router
+- **TypeScript** - bezpieczeństwo typów
+- **Tailwind CSS** - utility-first styling
+- **shadcn/ui** - komponenty UI
+- **Framer Motion** - płynne animacje
+
+### State Management
+- **Zustand** - globalny stan aplikacji
+- **TanStack Query** - cache i synchronizacja danych
+- **React Hook Form** - walidacja formularzy
+- **Zod** - schema validation
+
+### Styling & UX
+- **Glassmorphism** - nowoczesne efekty wizualne
+- **Pastelowa paleta kolorów** - przyjazny design
+- **Responsive design** - mobile-first
+- **Dark mode** - wsparcie trybu ciemnego
+
+---
+
+## 🚀 Szybki Start
+
+### Wymagania
+- Node.js 22+
+- pnpm 10+
+
+### Instalacja
+
+```bash
+# Sklonuj repozytorium
+git clone https://github.com/AdriannaCzechowska/healthtech-crew.git
+cd healthtech-crew
+
+# Zainstaluj zależności
+pnpm install
+
+# Uruchom serwer deweloperski
+pnpm dev
+```
+
+Aplikacja będzie dostępna pod adresem: **http://localhost:3000**
+
+### Komendy
+
+```bash
+pnpm dev        # Uruchom serwer deweloperski
+pnpm build      # Zbuduj wersję produkcyjną
+pnpm start      # Uruchom wersję produkcyjną
+pnpm lint       # Sprawdź błędy ESLint
+```
+
+---
+
+## 📁 Struktura Projektu
+
+```
+healthtech-crew/
+├── app/                          # Next.js App Router
+│   ├── (dashboard)/              # Dashboard główny
+│   ├── mapa-miasta/              # Mapa i bitwa drużyn
+│   ├── sasiedzkie-wyjscia/       # Wydarzenia lokalne
+│   ├── nagrody/                  # System nagród
+│   ├── smart-city-lodz/          # Dane Smart City
+│   ├── messages/                 # Wiadomości
+│   ├── ai-recommendations/       # Rekomendacje AI
+│   ├── treatment-plan/           # Plan leczenia
+│   ├── visits/                   # Wizyty lekarskie
+│   ├── lab-results/              # Wyniki badań
+│   └── symptom-check/            # Sprawdzanie objawów
+├── components/
+│   ├── core/                     # Komponenty główne
+│   │   ├── Header.tsx            # Nagłówek z dostępnością
+│   │   ├── Sidebar.tsx           # Nawigacja boczna
+│   │   ├── AccessibilitySettings.tsx  # Ustawienia WCAG
+│   │   └── ...
+│   └── ui/                       # Komponenty shadcn/ui
+├── lib/
+│   ├── api.ts                    # Mock API
+│   ├── store.ts                  # Zustand store
+│   ├── types.ts                  # TypeScript types
+│   └── utils.ts                  # Utility functions
+└── public/                       # Zasoby statyczne
+```
+
+---
+
+## 🎮 Jak Grać?
+
+### 1. Dołącz do Drużyny
+- Wybierz drużynę w swojej dzielnicy
+- Każda drużyna ma swój kolor i terytoria
+
+### 2. Zdobywaj Punkty
+- **Aktywność fizyczna** - spacery, biegi, nordic walking (+50-200 pkt)
+- **Sąsiedzkie wyjścia** - udział w wydarzeniach (+100-300 pkt)
+- **Badania profilaktyczne** - wykonane badania (+150 pkt)
+- **Kampanie miejskie** - udział w akcjach (+200 pkt)
+
+### 3. Przejmuj Terytoria
+- Aktywność w danym obszarze zwiększa wpływ drużyny
+- Terytoria zmieniają kolor na kolor dominującej drużyny
+- Im więcej terytoriów, tym wyższy ranking
+
+### 4. Wymieniaj Nagrody
+- Zdobyte punkty wymień na nagrody
+- Lokalne vouchery, zniżki, bilety
+- Nagrody od partnerów miejskich
+
+---
+
+## 🌟 Innowacje
+
+### Smart City Integration
+Aplikacja wykorzystuje dane miejskie do optymalizacji zdrowia:
+- **Jakość powietrza** - sugeruje najlepsze miejsca na aktywność
+- **Pyłki** - ostrzega alergików
+- **Trasy** - rekomenduje najzdrowsze ścieżki
+- **Hałas** - identyfikuje spokojne strefy
+
+### Gamifikacja Zdrowia
+Przekształcenie profilaktyki w grę:
+- Rywalizacja drużyn motywuje do regularności
+- Punkty za zdrowe nawyki
+- Społeczność wspiera indywidualne cele
+- Nagrody wzmacniają pozytywne zachowania
+
+### Dostępność dla Wszystkich
+WCAG AA compliance z dodatkowymi funkcjami:
+- Kontrola kontrastu dla osób słabowidzących
+- Skalowanie czcionek bez utraty layoutu
+- Pełna obsługa klawiatury
+- Screen reader friendly
+
+---
+
+## 🤝 Partnerzy i Integracje
+
+Aplikacja może integrować się z:
+- **Urząd Miasta Łodzi** - dane środowiskowe, kampanie
+- **NFZ** - przypomnienia o badaniach
+- **Lokalne firmy** - nagrody i vouchery
+- **Centra sportowe** - wydarzenia i zajęcia
+- **Apteki** - punkty zdrowia
+
+---
+
+## 📊 Statystyki (Mock Data)
+
+- **5 drużyn** w różnych dzielnicach
+- **12 terytoriów** do przejęcia
+- **15+ nagród** do wymiany
+- **8 tras spacerowych** z oceną zdrowia
+- **3 kampanie miejskie** miesięcznie
+
+---
+
+## 🔒 Prywatność i Bezpieczeństwo
+
+- Dane zdrowotne przechowywane lokalnie
+- Anonimowe statystyki dla miasta
+- Zgodność z RODO
+- Opcjonalne udostępnianie danych drużynie
+
+---
+
+## 🚧 Roadmap
+
+### Faza 1 (Obecna)
+- ✅ Podstawowa gamifikacja
+- ✅ System drużyn i terytoriów
+- ✅ Integracja Smart City
+- ✅ Dostępność WCAG AA
+
+### Faza 2 (Q1 2026)
+- 🔄 Integracja z prawdziwymi czujnikami IoT
+- 🔄 Aplikacja mobilna (React Native)
+- 🔄 GPS tracking aktywności
+- 🔄 Integracja z urządzeniami wearable
+
+### Faza 3 (Q2 2026)
+- 📅 AR features na mapie miasta
+- 📅 Multiplayer challenges
+- 📅 Integracja z NFZ
+- 📅 AI coach zdrowotny
+
+---
+
+## 👥 Dla Kogo?
+
+- **Mieszkańcy Łodzi** - wszyscy, którzy chcą być aktywni
+- **Rodziny** - wspólne aktywności i zdrowie dzieci
+- **Seniorzy** - przypomnienia o badaniach, bezpieczne trasy
+- **Sportowcy amatorzy** - rywalizacja i motywacja
+- **Urząd Miasta** - dane o aktywności mieszkańców
+
+---
+
+## 📄 Licencja
+
+MIT License - aplikacja open source
+
+---
+
+## 📞 Kontakt
+
+- **GitHub**: [AdriannaCzechowska/healthtech-crew](https://github.com/AdriannaCzechowska/healthtech-crew)
+- **Email**: kontakt@lodzwruchu.pl (przykładowy)
+
+---
+
+## 🙏 Podziękowania
+
+- Miasto Łódź za inspirację
+- Społeczność open source za narzędzia
+- Wszyscy testerzy i early adopters
+
+---
+
+**Łódź w Ruchu - Razem dla Zdrowszego Miasta! 🏃‍♀️💚**
 
