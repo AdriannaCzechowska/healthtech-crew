@@ -29,11 +29,11 @@ export function KpiCard({
   children,
   onClick,
 }: KpiCardProps) {
-  const colorClasses = {
-    primary: "text-primary bg-primary/10",
-    secondary: "text-secondary bg-secondary/10",
-    accent: "text-accent bg-accent/10",
-    muted: "text-muted bg-muted/10",
+  const iconColorClasses = {
+    primary: "text-primary",
+    secondary: "text-secondary",
+    accent: "text-accent",
+    muted: "text-muted-foreground",
   };
 
   return (
@@ -45,33 +45,39 @@ export function KpiCard({
       className={onClick ? "cursor-pointer" : ""}
       onClick={onClick}
     >
-      <Card className="overflow-hidden rounded-2xl border-2 shadow-lg hover:shadow-xl transition-shadow">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">{title}</CardTitle>
-          <div className={`p-2 rounded-xl ${colorClasses[color as keyof typeof colorClasses] || colorClasses.primary}`}>
-            <Icon className="h-4 w-4" />
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold">{value}</div>
-          {description && (
-            <p className="text-xs text-muted-foreground mt-1">{description}</p>
-          )}
-          {trend && (
-            <div className="flex items-center mt-2">
-              <span
-                className={`text-xs font-medium ${
-                  trend.isPositive ? "text-green-600" : "text-red-600"
-                }`}
-              >
-                {trend.isPositive ? "↑" : "↓"} {Math.abs(trend.value)}%
-              </span>
+      <Card className="overflow-hidden rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover:border-border transition-all relative">
+        <CardContent className="p-6 relative z-10">
+          <div className="flex items-start justify-between">
+            <div className="flex-1">
+              <p className="text-sm font-medium text-muted-foreground mb-3">{title}</p>
+              <div className="text-3xl font-bold mb-1">{value}</div>
+              {description && (
+                <p className="text-xs text-muted-foreground">{description}</p>
+              )}
+              {trend && (
+                <div className="flex items-center mt-2">
+                  <span
+                    className={`text-xs font-medium ${
+                      trend.isPositive ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {trend.isPositive ? "↑" : "↓"} {Math.abs(trend.value)}%
+                  </span>
+                </div>
+              )}
+              {children}
             </div>
-          )}
-          {children}
+            <div className={`${iconColorClasses[color as keyof typeof iconColorClasses] || iconColorClasses.primary}`}>
+              <Icon className="h-6 w-6 opacity-70" />
+            </div>
+          </div>
         </CardContent>
+        
+        {/* Large background icon shadow */}
+        <div className="absolute bottom-0 right-0 opacity-10 pointer-events-none">
+          <Icon className="h-32 w-32 -mr-8 -mb-8" />
+        </div>
       </Card>
     </motion.div>
   );
 }
-
