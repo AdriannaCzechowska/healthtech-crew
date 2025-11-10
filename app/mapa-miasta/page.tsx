@@ -117,22 +117,7 @@ export default function MapaMiastaPage() {
             <TabsContent value="map">
               <Card className="rounded-2xl border-2 shadow-lg">
                 <CardContent className="p-6">
-                  <div className="aspect-video bg-muted rounded-xl flex items-center justify-center relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10" />
-                    <div className="relative z-10 text-center">
-                      <Map className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
-                      <p className="text-lg font-semibold mb-2">Interaktywna Mapa Łodzi</p>
-                      <p className="text-sm text-muted-foreground max-w-md">
-                        Tutaj będzie wyświetlana mapa miasta z zaznaczonymi terytoriami kontrolowanymi przez drużyny
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-4 p-4 rounded-xl bg-primary/10 border border-primary/20">
-                    <p className="text-sm">
-                      <strong>Jak to działa:</strong> Drużyny zdobywają terytoria poprzez aktywność fizyczną w danym obszarze. 
-                      Im więcej członków drużyny jest aktywnych na danym terenie, tym większa szansa na jego przejęcie!
-                    </p>
-                  </div>
+                  <img src="/mapa.png" />
                 </CardContent>
               </Card>
             </TabsContent>
