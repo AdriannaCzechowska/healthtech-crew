@@ -47,6 +47,13 @@ export type LabResult = {
   description?: string; 
 };
 
+export type PreventiveEvent = {
+  id: string;
+  name: string;
+  date: string;
+  status: "done" | "upcoming" | "overdue";
+};
+
 
 export type SymptomReport = {
   symptoms: string[];
@@ -165,4 +172,3 @@ export type Reward = {
   imageUrl?: string;
   available: boolean;
 };
-
