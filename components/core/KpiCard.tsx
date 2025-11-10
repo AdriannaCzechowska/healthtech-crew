@@ -45,8 +45,8 @@ export function KpiCard({
       className={onClick ? "cursor-pointer" : ""}
       onClick={onClick}
     >
-      <Card className="overflow-hidden rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover:border-border transition-all">
-        <CardContent className="p-6">
+      <Card className="overflow-hidden rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover:border-border transition-all relative">
+        <CardContent className="p-6 relative z-10">
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <p className="text-sm font-medium text-muted-foreground mb-3">{title}</p>
@@ -72,6 +72,11 @@ export function KpiCard({
             </div>
           </div>
         </CardContent>
+        
+        {/* Large background icon shadow */}
+        <div className="absolute bottom-0 right-0 opacity-10 pointer-events-none">
+          <Icon className="h-32 w-32 -mr-8 -mb-8" />
+        </div>
       </Card>
     </motion.div>
   );
