@@ -164,7 +164,7 @@ export default function TreatmentPlanPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <Card className="rounded-2xl border-2 shadow-lg bg-gradient-to-br from-blue-50/50 to-purple-50/50">
+                <Card className="rounded-2xl border-2 shadow-lg bg-gradient-to-br from-primary/10 to-secondary/10">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -186,8 +186,8 @@ export default function TreatmentPlanPage() {
                         transition={{ duration: 0.2, delay: index * 0.05 }}
                         className={`p-3 rounded-xl border ${
                           notif.priority === "high" 
-                            ? "bg-red-50 border-red-200" 
-                            : "bg-blue-50 border-blue-200"
+                            ? "bg-red-100/80 dark:bg-red-900/20 border-red-200 dark:border-red-800" 
+                            : "bg-blue-100/80 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800"
                         }`}
                       >
                         <p className="text-sm">{notif.message}</p>
@@ -203,11 +203,11 @@ export default function TreatmentPlanPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
               >
-                <Card className="rounded-2xl border-2 shadow-lg bg-gradient-to-br from-green-50/50 to-emerald-50/50">
+                <Card className="rounded-2xl border-2 shadow-lg bg-gradient-to-br from-primary/10 to-secondary/10">
                   <CardContent className="pt-6">
                     <div className="flex items-start gap-3">
-                      <div className="p-2 rounded-xl bg-green-100">
-                        <Lightbulb className="h-5 w-5 text-green-600" />
+                      <div className="p-2 rounded-xl bg-primary/20">
+                        <Lightbulb className="h-5 w-5 text-primary" />
                       </div>
                       <div className="flex-1">
                         <h3 className="font-semibold mb-1">💡 Porada dnia</h3>
