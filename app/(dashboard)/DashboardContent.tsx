@@ -48,6 +48,48 @@ export function DashboardContent() {
     queryFn: api.getRecommendations,
   });
 
+    // Mapowanie poziomu ryzyka na polskie etykiety
+    const translateSeverity = (severity: string) => {
+      switch (severity) {
+        case "High":
+          return "Wysoki";
+        case "Medium":
+          return "Średni";
+        case "Low":
+          return "Niski";
+        default:
+          return severity;
+      }
+    };
+
+    // Tłumaczenie tytułów rekomendacji
+    const translateTitle = (title: string) => {
+      switch (title) {
+        case "Schedule Follow-up Visit":
+          return "Umów wizytę kontrolną";
+        case "Preventive Screening Due":
+          return "Wykonaj badania profilaktyczne";
+        case "Increase Physical Activity":
+          return "Zwiększ aktywność fizyczną";
+        case "Hydration Goals":
+          return "Cele nawodnienia";
+        default:
+          return title;
+      }
+    };
+
+    // Tłumaczenie opisów rekomendacji
+    const translateDescription = (desc: string) => {
+      if (desc.includes("follow-up consultation"))
+        return "Twoje ostatnie wyniki sugerują potrzebę konsultacji kontrolnej z lekarzem w ciągu najbliższych 2 tygodni.";
+      if (desc.includes("Annual cardiovascular screening"))
+        return "Na podstawie Twojego wieku i profilu zdrowotnego zalecane jest roczne badanie kardiologiczne.";
+      if (desc.includes("activity levels are below"))
+        return "Twój poziom aktywności jest niższy od zalecanego. Spróbuj dodać 30 minut spaceru dziennie.";
+      if (desc.includes("hydration goals"))
+        return "Osiągasz 85% dziennego celu nawodnienia. Świetna robota – utrzymuj ten poziom!";
+      return desc;
+    };
   const userTeam = teams?.find((t) => t.id === user?.teamId);
   const unreadCount = messages?.filter((m) => m.unread)?.length ?? 0;
   const upcomingEvents = events?.filter((e) => e.status === "upcoming") || [];
@@ -259,10 +301,10 @@ export function DashboardContent() {
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex-1">
-                        <p className="font-medium mb-1">{rec.title}</p>
-                        <p className="text-xs text-muted-foreground line-clamp-2">
-                          {rec.description}
-                        </p>
+                          <p className="font-medium mb-1">{translateTitle(rec.title)}</p>
+                          <p className="text-xs text-muted-foreground line-clamp-2">
+                            {translateDescription(rec.description)}
+                          </p>
                       </div>
                       <Badge
                         variant={
@@ -274,9 +316,7 @@ export function DashboardContent() {
                         }
                         className="rounded-full"
                       >
-                        {rec.severity === "High" && "Wysoki"}
-                        {rec.severity === "Medium" && "Średni"}
-                        {rec.severity === "Low" && "Niski"}
+                          {translateSeverity(rec.severity)}
                       </Badge>
                     </div>
                   </div>
