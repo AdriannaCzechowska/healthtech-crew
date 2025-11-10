@@ -1,4 +1,4 @@
-# Łódź w Ruchu 🏃‍♀️🏙️
+# Łódź w Ruchu
 
 **Gra strategiczno-zdrowotna Smart City dla mieszkańców Łodzi**
 
@@ -6,52 +6,52 @@
 
 ---
 
-## 🎯 Czym jest Łódź w Ruchu?
+## Czym jest Łódź w Ruchu?
 
 Aplikacja łączy elementy **gamifikacji**, **zdrowia publicznego** i **Smart City**, tworząc ekosystem, w którym:
 
-- 🏆 **Drużyny** rywalizują o terytoria w różnych dzielnicach Łodzi
-- 👥 **Sąsiedzi** organizują wspólne wyjścia (spacery, biegi, nordic walking)
-- 🎁 **Punkty** zdobywane za aktywność można wymieniać na nagrody lokalne
-- 🌱 **Dane środowiskowe** (jakość powietrza, pyłki) pomagają planować aktywności
-- 📊 **Panel zdrowotny** przypomina o badaniach profilaktycznych, sugeruje wizyty kontrolne oraz pomaga monitorować wyniki i postępy zdrowotne.
+- **Drużyny** rywalizują o terytoria w różnych dzielnicach Łodzi
+- **Sąsiedzi** organizują wspólne wyjścia (spacery, biegi, nordic walking)
+- **Punkty** zdobywane za aktywność można wymieniać na nagrody lokalne
+- **Dane środowiskowe** (jakość powietrza, pyłki) pomagają planować aktywności
+- **Panel zdrowotny** przypomina o badaniach profilaktycznych, sugeruje wizyty kontrolne oraz pomaga monitorować wyniki i postępy zdrowotne.
 
 ---
 
-## ✨ Główne Funkcje
+## Główne Funkcje
 
-### 🗺️ Bitwa Drużyn o Miasto
+### Bitwa Drużyn o Miasto
 - Interaktywna mapa Łodzi podzielona na terytoria
 - Drużyny przejmują obszary poprzez aktywność fizyczną
 - Kolory drużyn wizualizują kontrolowane tereny
 - Ranking drużyn z punktami i statystykami
 
-### 🚶 Sąsiedzkie Wyjścia
+### Sąsiedzkie Wyjścia
 - Organizuj i dołączaj do lokalnych wydarzeń
 - Wspólne spacery, biegi, nordic walking
 - System punktów za uczestnictwo
 - Integracja społeczności lokalnej
 
-### 🎁 Strefa Nagród
+### Strefa Nagród
 - Wymiana punktów na nagrody od lokalnych partnerów
 - Zniżki, vouchery, darmowe wejściówki
 - Ranking drużyn z nagrodami sezonowymi
 - Motywacja do regularnej aktywności
 
-### 🌍 Smart City Łódź
+### Smart City Łódź
 - **Jakość powietrza** - dane AQI w czasie rzeczywistym
 - **Poziom pyłków** - informacje dla alergików
 - **Trasy spacerowe** - ocena zieleni i jakości powietrza
 - **Kampanie miejskie** - wydarzenia profilaktyczne
 - **Analityka dzielnic** - statystyki zdrowia publicznego
 
-### 💊 Panel Zdrowotny
+### Panel Zdrowotny
 - Historia badań i przypomnienia
 - Rekomendacje AI dotyczące profilaktyki
 - Kalendarz badań dopasowany do profilu
 - Mapa punktów badań w Łodzi
 
-### ♿ Dostępność WCAG AA
+### Dostępność WCAG AA
 - **Kontrola kontrastu** - 3 poziomy (normalny, wysoki, maksymalny)
 - **Rozmiar czcionki** - 4 opcje (mały, normalny, duży, bardzo duży)
 - **Tryb ciemny** - automatyczne przełączanie
@@ -60,7 +60,7 @@ Aplikacja łączy elementy **gamifikacji**, **zdrowia publicznego** i **Smart Ci
 
 ---
 
-## 🛠️ Stack Technologiczny
+## Stack Technologiczny
 
 ### Frontend
 - **Next.js 15** - React framework z App Router
@@ -78,7 +78,7 @@ Aplikacja łączy elementy **gamifikacji**, **zdrowia publicznego** i **Smart Ci
 
 ---
 
-## 📁 Struktura Projektu
+## Struktura Projektu
 
 ```
 healthtech-crew/
@@ -111,7 +111,7 @@ healthtech-crew/
 
 ---
 
-## 🎮 Jak Grać?
+## Jak Grać?
 
 ### 1. Dołącz do Drużyny
 - Wybierz drużynę w swojej dzielnicy
@@ -135,7 +135,7 @@ healthtech-crew/
 
 ---
 
-## 🌟 Innowacje
+## Innowacje
 
 ### Smart City Integration
 Aplikacja wykorzystuje dane miejskie do optymalizacji zdrowia:
@@ -160,7 +160,7 @@ WCAG AA compliance z dodatkowymi funkcjami:
 
 ---
 
-## 🤝 Partnerzy i Integracje
+## Partnerzy i Integracje
 
 Aplikacja może integrować się z:
 - **Urząd Miasta Łodzi** - dane środowiskowe, kampanie
@@ -171,7 +171,7 @@ Aplikacja może integrować się z:
 
 ---
 
-## 📊 Statystyki (Mock Data)
+## Statystyki (Mock Data)
 
 - **5 drużyn** w różnych dzielnicach
 - **12 terytoriów** do przejęcia
@@ -181,14 +181,14 @@ Aplikacja może integrować się z:
 
 ---
 
-## 🔒 Prywatność i Bezpieczeństwo
+## Prywatność i Bezpieczeństwo
 
 - Dane zdrowotne przechowywane lokalnie
 - Anonimowe statystyki dla miasta
 - Zgodność z RODO
 - Opcjonalne udostępnianie danych drużynie
 
-## 👥 Dla Kogo?
+## Dla Kogo?
 
 - **Mieszkańcy Łodzi** - wszyscy, którzy chcą być aktywni
 - **Rodziny** - wspólne aktywności i zdrowie dzieci
