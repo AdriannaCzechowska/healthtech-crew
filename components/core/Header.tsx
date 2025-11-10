@@ -1,5 +1,4 @@
 "use client";
-
 import { Moon, Sun, Bell, Menu } from "lucide-react";
 import { AccessibilitySettings } from "./AccessibilitySettings";
 import { Button } from "@/components/ui/button";
@@ -7,13 +6,15 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useAppStore } from "@/lib/store";
 import { Badge } from "@/components/ui/badge";
 
+const LOGO_SRC = "/Kurs_na_zdrowie.png";
+
 interface HeaderProps {
   onMenuClick?: () => void;
 }
 
 export function Header({ onMenuClick }: HeaderProps) {
   const { theme, toggleTheme, user } = useAppStore();
-
+  
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between px-4">
@@ -28,18 +29,19 @@ export function Header({ onMenuClick }: HeaderProps) {
               <Menu className="h-5 w-5" />
             </Button>
           )}
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">Ł</span>
-            </div>
+          <div className="flex items-center gap-3">
+            <img 
+              src={LOGO_SRC}
+              alt="Kurs na Zdrowie Logo" 
+              className="h-16 w-16 object-contain"
+            />
             <div className="hidden md:block">
-              <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Kurs na Zdrowie
               </h1>
             </div>
           </div>
         </div>
-
         <div className="flex items-center gap-2">
           <AccessibilitySettings />
           
@@ -56,7 +58,6 @@ export function Header({ onMenuClick }: HeaderProps) {
               <Sun className="h-5 w-5" />
             )}
           </Button>
-
           <Button variant="ghost" size="icon" className="rounded-full relative">
             <Bell className="h-5 w-5" />
             <Badge
@@ -66,7 +67,6 @@ export function Header({ onMenuClick }: HeaderProps) {
               2
             </Badge>
           </Button>
-
           <div className="flex items-center gap-2 ml-2">
             <Avatar className="h-9 w-9">
               <AvatarFallback className="bg-primary text-primary-foreground">
@@ -86,4 +86,3 @@ export function Header({ onMenuClick }: HeaderProps) {
     </header>
   );
 }
-
