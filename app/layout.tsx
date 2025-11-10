@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Łódź w Ruchu - Gra Strategiczno-Zdrowotna",
+  title: "KURS NA ZDROWIE",
   description: "Interaktywna gra miejska łącząca aktywność fizyczną, profilaktykę zdrowotną i integrację społeczną z danymi Smart City",
 };
 
