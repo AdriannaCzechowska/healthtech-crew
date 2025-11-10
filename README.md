@@ -78,17 +78,6 @@ Aplikacja łączy elementy **gamifikacji**, **zdrowia publicznego** i **Smart Ci
 
 ---
 
-## 🚀 Szybki Start
-
-### Wymagania
-- Node.js 22+
-- npm 10+
-- 
-
-
-
----
-
 ## 📁 Struktura Projektu
 
 ```
