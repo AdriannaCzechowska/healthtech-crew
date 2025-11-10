@@ -33,7 +33,7 @@ export function Header({ onMenuClick }: HeaderProps) {
             <img 
               src={LOGO_SRC}
               alt="Kurs na Zdrowie Logo" 
-              className="h-64 w-64 object-contain"
+              className="h-20 w-20 object-contain"
             />
             <div className="hidden md:block">
               <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
