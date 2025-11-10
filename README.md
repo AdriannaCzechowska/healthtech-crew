@@ -2,7 +2,7 @@
 
 **Gra strategiczno-zdrowotna Smart City dla mieszkańców Łodzi**
 
-Łódź w Ruchu to interaktywna aplikacja webowa, która zamienia miasto w grę - zachęcając mieszkańców do aktywności fizycznej, profilaktyki zdrowotnej i integracji społecznej poprzez rywalizację drużyn o terytoria miejskie.
+Łódź w Ruchu to interaktywna aplikacja webowa, która zamienia miasto w grę - zachęcając mieszkańców do aktywności fizycznej, profilaktyki zdrowotnej i integracji społecznej poprzez rywalizację drużyn.
 
 ---
 
@@ -14,7 +14,7 @@ Aplikacja łączy elementy **gamifikacji**, **zdrowia publicznego** i **Smart Ci
 - 👥 **Sąsiedzi** organizują wspólne wyjścia (spacery, biegi, nordic walking)
 - 🎁 **Punkty** zdobywane za aktywność można wymieniać na nagrody lokalne
 - 🌱 **Dane środowiskowe** (jakość powietrza, pyłki) pomagają planować aktywności
-- 📊 **Panel zdrowotny** przypomina o badaniach profilaktycznych
+- 📊 **Panel zdrowotny** przypomina o badaniach profilaktycznych, sugeruje wizyty kontrolne oraz pomaga monitorować wyniki i postępy zdrowotne.
 
 ---
 
@@ -69,17 +69,12 @@ Aplikacja łączy elementy **gamifikacji**, **zdrowia publicznego** i **Smart Ci
 - **shadcn/ui** - komponenty UI
 - **Framer Motion** - płynne animacje
 
-### State Management
-- **Zustand** - globalny stan aplikacji
-- **TanStack Query** - cache i synchronizacja danych
-- **React Hook Form** - walidacja formularzy
-- **Zod** - schema validation
-
 ### Styling & UX
 - **Glassmorphism** - nowoczesne efekty wizualne
 - **Pastelowa paleta kolorów** - przyjazny design
 - **Responsive design** - mobile-first
 - **Dark mode** - wsparcie trybu ciemnego
+- **High Contrast Mode (WCAG)** - zapewnia odpowiedni kontrast kolorów dla osób z zaburzeniami widzenia i daltonizmem
 
 ---
 
@@ -87,32 +82,10 @@ Aplikacja łączy elementy **gamifikacji**, **zdrowia publicznego** i **Smart Ci
 
 ### Wymagania
 - Node.js 22+
-- pnpm 10+
+- npm 10+
+- 
 
-### Instalacja
 
-```bash
-# Sklonuj repozytorium
-git clone https://github.com/AdriannaCzechowska/healthtech-crew.git
-cd healthtech-crew
-
-# Zainstaluj zależności
-pnpm install
-
-# Uruchom serwer deweloperski
-pnpm dev
-```
-
-Aplikacja będzie dostępna pod adresem: **http://localhost:3000**
-
-### Komendy
-
-```bash
-pnpm dev        # Uruchom serwer deweloperski
-pnpm build      # Zbuduj wersję produkcyjną
-pnpm start      # Uruchom wersję produkcyjną
-pnpm lint       # Sprawdź błędy ESLint
-```
 
 ---
 
@@ -226,30 +199,6 @@ Aplikacja może integrować się z:
 - Zgodność z RODO
 - Opcjonalne udostępnianie danych drużynie
 
----
-
-## 🚧 Roadmap
-
-### Faza 1 (Obecna)
-- ✅ Podstawowa gamifikacja
-- ✅ System drużyn i terytoriów
-- ✅ Integracja Smart City
-- ✅ Dostępność WCAG AA
-
-### Faza 2 (Q1 2026)
-- 🔄 Integracja z prawdziwymi czujnikami IoT
-- 🔄 Aplikacja mobilna (React Native)
-- 🔄 GPS tracking aktywności
-- 🔄 Integracja z urządzeniami wearable
-
-### Faza 3 (Q2 2026)
-- 📅 AR features na mapie miasta
-- 📅 Multiplayer challenges
-- 📅 Integracja z NFZ
-- 📅 AI coach zdrowotny
-
----
-
 ## 👥 Dla Kogo?
 
 - **Mieszkańcy Łodzi** - wszyscy, którzy chcą być aktywni
@@ -257,29 +206,7 @@ Aplikacja może integrować się z:
 - **Seniorzy** - przypomnienia o badaniach, bezpieczne trasy
 - **Sportowcy amatorzy** - rywalizacja i motywacja
 - **Urząd Miasta** - dane o aktywności mieszkańców
+- **Potencjalnie** – całe społeczeństwo w skali kraju – rozwiązanie można łatwo wdrożyć w innych miastach i regionach Polski
 
 ---
-
-## 📄 Licencja
-
-MIT License - aplikacja open source
-
----
-
-## 📞 Kontakt
-
-- **GitHub**: [AdriannaCzechowska/healthtech-crew](https://github.com/AdriannaCzechowska/healthtech-crew)
-- **Email**: kontakt@lodzwruchu.pl (przykładowy)
-
----
-
-## 🙏 Podziękowania
-
-- Miasto Łódź za inspirację
-- Społeczność open source za narzędzia
-- Wszyscy testerzy i early adopters
-
----
-
-**Łódź w Ruchu - Razem dla Zdrowszego Miasta! 🏃‍♀️💚**
 
