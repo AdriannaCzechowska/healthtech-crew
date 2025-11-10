@@ -8,7 +8,13 @@ import { Sidebar } from "@/components/core/Sidebar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Brain, RefreshCw, AlertCircle, Info, AlertTriangle } from "lucide-react";
+import {
+  Brain,
+  RefreshCw,
+  AlertCircle,
+  Info,
+  AlertTriangle,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import type { Recommendation } from "@/lib/types";
 import { useRouter } from "next/navigation";
@@ -52,6 +58,64 @@ export default function AIRecommendationsPage() {
     }
   };
 
+  // Mapowanie poziomu ryzyka na polskie etykiety
+  const translateSeverity = (severity: string) => {
+    switch (severity) {
+      case "High":
+        return "Wysoki";
+      case "Medium":
+        return "Średni";
+      case "Low":
+        return "Niski";
+      default:
+        return severity;
+    }
+  };
+
+  // Tłumaczenie kategorii
+  const translateCategory = (category: string) => {
+    switch (category) {
+      case "Appointments":
+        return "Wizyty lekarskie";
+      case "Preventive Care":
+        return "Profilaktyka zdrowotna";
+      case "Lifestyle":
+        return "Styl życia";
+      case "Wellness":
+        return "Samopoczucie";
+      default:
+        return category;
+    }
+  };
+
+  // Tłumaczenie tytułów i opisów rekomendacji
+  const translateTitle = (title: string) => {
+    switch (title) {
+      case "Schedule Follow-up Visit":
+        return "Umów wizytę kontrolną";
+      case "Preventive Screening Due":
+        return "Wykonaj badania profilaktyczne";
+      case "Increase Physical Activity":
+        return "Zwiększ aktywność fizyczną";
+      case "Hydration Goals":
+        return "Cele nawodnienia";
+      default:
+        return title;
+    }
+  };
+
+  const translateDescription = (desc: string) => {
+    if (desc.includes("follow-up consultation"))
+      return "Twoje ostatnie wyniki sugerują potrzebę konsultacji kontrolnej z lekarzem w ciągu najbliższych 2 tygodni.";
+    if (desc.includes("Annual cardiovascular screening"))
+      return "Na podstawie Twojego wieku i profilu zdrowotnego zalecane jest roczne badanie kardiologiczne.";
+    if (desc.includes("activity levels are below"))
+      return "Twój poziom aktywności jest niższy od zalecanego. Spróbuj dodać 30 minut spaceru dziennie.";
+    if (desc.includes("hydration goals"))
+      return "Osiągasz 85% dziennego celu nawodnienia. Świetna robota – utrzymuj ten poziom!";
+    return desc;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background">
       <Header onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
@@ -60,9 +124,9 @@ export default function AIRecommendationsPage() {
         <div className="container py-6 px-4">
           <div className="mb-6 flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold mb-2">AI Recommendations</h1>
+              <h1 className="text-3xl font-bold mb-2">Rekomendacje AI</h1>
               <p className="text-muted-foreground">
-                Personalized health insights powered by AI
+                Spersonalizowane wskazówki zdrowotne oparte na analizie danych.
               </p>
             </div>
             <Button
@@ -71,15 +135,17 @@ export default function AIRecommendationsPage() {
               className="rounded-xl"
             >
               <RefreshCw
-                className={`h-4 w-4 mr-2 ${refreshMutation.isPending ? "animate-spin" : ""}`}
+                className={`h-4 w-4 mr-2 ${
+                  refreshMutation.isPending ? "animate-spin" : ""
+                }`}
               />
-              Refresh Analysis
+              {refreshMutation.isPending ? "Analizowanie..." : "Odśwież analizę"}
             </Button>
           </div>
 
           {isLoading ? (
             <div className="text-center py-12 text-muted-foreground">
-              Loading recommendations...
+              Ładowanie rekomendacji...
             </div>
           ) : recommendations && recommendations.length > 0 ? (
             <div className="grid gap-4 md:grid-cols-2">
@@ -111,9 +177,11 @@ export default function AIRecommendationsPage() {
                             {getSeverityIcon(rec.severity)}
                           </div>
                           <div>
-                            <CardTitle className="text-lg">{rec.title}</CardTitle>
+                            <CardTitle className="text-lg">
+                              {translateTitle(rec.title)}
+                            </CardTitle>
                             <p className="text-xs text-muted-foreground mt-1">
-                              {rec.category}
+                              {translateCategory(rec.category)}
                             </p>
                           </div>
                         </div>
@@ -121,12 +189,14 @@ export default function AIRecommendationsPage() {
                           variant={getSeverityColor(rec.severity)}
                           className="rounded-full"
                         >
-                          {rec.severity}
+                          {translateSeverity(rec.severity)}
                         </Badge>
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-sm text-muted-foreground">{rec.description}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {translateDescription(rec.description)}
+                      </p>
                       {rec.actionUrl && (
                         <Button
                           variant="link"
@@ -136,7 +206,7 @@ export default function AIRecommendationsPage() {
                             router.push(rec.actionUrl!);
                           }}
                         >
-                          Take Action →
+                          Podejmij działanie →
                         </Button>
                       )}
                     </CardContent>
@@ -147,9 +217,11 @@ export default function AIRecommendationsPage() {
           ) : (
             <Card className="rounded-2xl p-12 text-center">
               <Brain className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">No recommendations yet</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                Brak rekomendacji
+              </h3>
               <p className="text-sm text-muted-foreground">
-                Check back later for personalized health insights
+                Wróć później, aby zobaczyć spersonalizowane wskazówki zdrowotne.
               </p>
             </Card>
           )}
@@ -158,4 +230,3 @@ export default function AIRecommendationsPage() {
     </div>
   );
 }
-

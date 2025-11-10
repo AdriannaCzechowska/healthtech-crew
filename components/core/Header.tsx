@@ -34,7 +34,7 @@ export function Header({ onMenuClick }: HeaderProps) {
             </div>
             <div className="hidden md:block">
               <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Łódź w Ruchu
+                Kurs na Zdrowie
               </h1>
             </div>
           </div>

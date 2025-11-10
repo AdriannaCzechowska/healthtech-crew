@@ -34,6 +34,19 @@ export default function VisitsPage() {
     }
   };
 
+  const translateStatus = (status: Visit["status"]) => {
+    switch (status) {
+      case "Confirmed":
+        return "Potwierdzona";
+      case "Pending":
+        return "Oczekująca";
+      case "Cancelled":
+        return "Anulowana";
+      default:
+        return status;
+    }
+  };
+
   const VisitCard = ({ visit, index }: { visit: Visit; index: number }) => (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -47,14 +60,14 @@ export default function VisitsPage() {
             <p className="text-sm text-muted-foreground">{visit.specialty}</p>
           </div>
           <Badge variant={getStatusVariant(visit.status)} className="rounded-full">
-            {visit.status}
+            {translateStatus(visit.status)}
           </Badge>
         </div>
         <div className="space-y-2 text-sm">
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4 text-muted-foreground" />
             <span>
-              {new Date(visit.date).toLocaleDateString("en-GB", {
+              {new Date(visit.date).toLocaleDateString("pl-PL", {
                 weekday: "long",
                 day: "numeric",
                 month: "long",
@@ -82,24 +95,24 @@ export default function VisitsPage() {
       <main className="md:pl-64 pt-16">
         <div className="container py-6 px-4">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">Appointments</h1>
+            <h1 className="text-3xl font-bold mb-2">Wizyty lekarskie</h1>
             <p className="text-muted-foreground">
-              Manage your healthcare appointments
+              Zarządzaj swoimi terminami wizyt i konsultacji medycznych.
             </p>
           </div>
 
           {isLoading ? (
             <div className="text-center py-12 text-muted-foreground">
-              Loading appointments...
+              Ładowanie wizyt...
             </div>
           ) : (
             <Tabs defaultValue="upcoming" className="space-y-4">
               <TabsList className="rounded-xl">
                 <TabsTrigger value="upcoming" className="rounded-lg">
-                  Upcoming ({upcomingVisits?.length || 0})
+                  Nadchodzące ({upcomingVisits?.length || 0})
                 </TabsTrigger>
                 <TabsTrigger value="past" className="rounded-lg">
-                  Past ({pastVisits?.length || 0})
+                  Archiwalne ({pastVisits?.length || 0})
                 </TabsTrigger>
               </TabsList>
 
@@ -112,10 +125,10 @@ export default function VisitsPage() {
                   <Card className="rounded-2xl p-12 text-center">
                     <Calendar className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                     <h3 className="text-lg font-semibold mb-2">
-                      No upcoming appointments
+                      Brak nadchodzących wizyt
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      Schedule an appointment with your healthcare provider
+                      Umów się na wizytę u swojego lekarza.
                     </p>
                   </Card>
                 )}
@@ -130,10 +143,10 @@ export default function VisitsPage() {
                   <Card className="rounded-2xl p-12 text-center">
                     <Calendar className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                     <h3 className="text-lg font-semibold mb-2">
-                      No past appointments
+                      Brak archiwalnych wizyt
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      Your appointment history will appear here
+                      Historia Twoich wizyt pojawi się tutaj po zakończonych spotkaniach.
                     </p>
                   </Card>
                 )}
@@ -145,4 +158,3 @@ export default function VisitsPage() {
     </div>
   );
 }
-
