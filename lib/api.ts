@@ -374,7 +374,7 @@ const mockSmartCityData: SmartCityData = {
   walkingRoutes: [
     {
       id: "1",
-      name: "Riverside Park Trail",
+      name: "Trasa Park Poniatowskiego",
       distance: 3.2,
       duration: 45,
       greenScore: 95,
@@ -382,7 +382,7 @@ const mockSmartCityData: SmartCityData = {
     },
     {
       id: "2",
-      name: "City Centre Loop",
+      name: "Pętla Śródmieścia",
       distance: 2.5,
       duration: 35,
       greenScore: 65,
@@ -390,7 +390,7 @@ const mockSmartCityData: SmartCityData = {
     },
     {
       id: "3",
-      name: "Forest Path Circuit",
+      name: "Trasa Leśna",
       distance: 5.0,
       duration: 75,
       greenScore: 98,
@@ -400,35 +400,35 @@ const mockSmartCityData: SmartCityData = {
   healthCampaigns: [
     {
       id: "1",
-      title: "Free Cardiovascular Screening",
-      description: "Free heart health checks for residents over 40",
-      location: "Central Community Centre",
+      title: "Bezpłatne badanie sercowo-naczyniowe",
+      description: "Bezpłatne badania zdrowia serca dla mieszkańców powyżej 40 lat",
+      location: "Centralne Centrum Społeczności",
       date: "2025-11-10",
       type: "Screening",
     },
     {
       id: "2",
-      title: "Diabetes Awareness Week",
-      description: "Educational sessions and free blood sugar testing",
-      location: "City Health Hub",
+      title: "Tydzień Świadomości Cukrzycy",
+      description: "Sesje edukacyjne i bezpłatne badania poziomu cukru we krwi",
+      location: "Miejskie Centrum Zdrowia",
       date: "2025-11-14",
       type: "Education",
     },
     {
       id: "3",
-      title: "Mental Health Support Group",
-      description: "Weekly support sessions for mental wellbeing",
-      location: "Wellness Centre",
+      title: "Grupa Wsparcia Zdrowia Psychicznego",
+      description: "Cotygodniowe sesje wsparcia dla dobrostanu psychicznego",
+      location: "Centrum Wellness",
       date: "2025-10-28",
       type: "Support",
     },
   ],
   districtHealth: [
-    { district: "Central", participationRate: 78, screeningsConducted: 1250, healthScore: 85 },
-    { district: "North", participationRate: 65, screeningsConducted: 890, healthScore: 78 },
-    { district: "South", participationRate: 72, screeningsConducted: 1100, healthScore: 82 },
-    { district: "East", participationRate: 68, screeningsConducted: 950, healthScore: 80 },
-    { district: "West", participationRate: 82, screeningsConducted: 1400, healthScore: 88 },
+    { district: "Śródmieście", participationRate: 78, screeningsConducted: 1250, healthScore: 85 },
+    { district: "Retkinia", participationRate: 65, screeningsConducted: 890, healthScore: 78 },
+    { district: "Widzew", participationRate: 72, screeningsConducted: 1100, healthScore: 82 },
+    { district: "Górna", participationRate: 68, screeningsConducted: 950, healthScore: 80 },
+    { district: "Bałuty", participationRate: 82, screeningsConducted: 1400, healthScore: 88 },
   ],
 };
 

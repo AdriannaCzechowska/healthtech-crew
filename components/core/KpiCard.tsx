@@ -40,6 +40,17 @@ export function KpiCard({
     cyan: "text-cyan-500",
   };
 
+  const bgColorClasses = {
+    primary: "bg-gradient-to-br from-primary/20 to-primary/10 border-primary/30",
+    secondary: "bg-gradient-to-br from-secondary/20 to-secondary/10 border-secondary/30",
+    accent: "bg-gradient-to-br from-accent/20 to-accent/10 border-accent/30",
+    muted: "bg-gradient-to-br from-muted/20 to-muted/10 border-muted/30",
+    purple: "bg-gradient-to-br from-purple-500/20 to-purple-500/10 border-purple-500/30",
+    blue: "bg-gradient-to-br from-blue-500/20 to-blue-500/10 border-blue-500/30",
+    indigo: "bg-gradient-to-br from-indigo-500/20 to-indigo-500/10 border-indigo-500/30",
+    cyan: "bg-gradient-to-br from-cyan-500/20 to-cyan-500/10 border-cyan-500/30",
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -49,7 +60,7 @@ export function KpiCard({
       className={onClick ? "cursor-pointer" : ""}
       onClick={onClick}
     >
-      <Card className="overflow-hidden rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover:border-border transition-all relative">
+      <Card className={`overflow-hidden rounded-2xl border ${bgColorClasses[color as keyof typeof bgColorClasses] || bgColorClasses.primary} backdrop-blur-sm hover:border-border transition-all relative`}>
         <CardContent className="p-6 relative z-10">
           <div className="flex items-start justify-between">
             <div className="flex-1">
