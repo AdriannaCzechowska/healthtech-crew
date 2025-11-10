@@ -66,6 +66,7 @@ export function DashboardContent() {
             value={user?.points.toLocaleString() ?? "0"}
             icon={Trophy}
             description="+250 w tym tygodniu"
+            color="purple"
           />
         </motion.div>
 
@@ -79,6 +80,7 @@ export function DashboardContent() {
             value={`#${userTeam?.rank || "-"}`}
             icon={Users}
             description={userTeam ? `${userTeam.members} członków` : "Brak drużyny"}
+            color="blue"
           />
         </motion.div>
 
@@ -93,6 +95,7 @@ export function DashboardContent() {
               value={upcomingEvents.length.toString()}
               icon={Calendar}
               description="Kliknij aby zobaczyć"
+              color="indigo"
             />
           </Link>
         </motion.div>
@@ -108,6 +111,7 @@ export function DashboardContent() {
               value={unreadCount.toString()}
               icon={MessageSquare}
               description={unreadCount > 0 ? "Nowe wiadomości" : "Brak nowych"}
+              color="cyan"
             />
           </Link>
         </motion.div>

@@ -34,6 +34,10 @@ export function KpiCard({
     secondary: "text-secondary",
     accent: "text-accent",
     muted: "text-muted-foreground",
+    purple: "text-purple-500",
+    blue: "text-blue-500",
+    indigo: "text-indigo-500",
+    cyan: "text-cyan-500",
   };
 
   return (
