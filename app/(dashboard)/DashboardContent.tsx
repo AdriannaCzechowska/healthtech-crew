@@ -288,58 +288,7 @@ export function DashboardContent() {
         </motion.div>
       </div>
 
-      {/* Quick Actions */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.8 }}
-      >
-        <Card className="rounded-2xl border-2 shadow-lg bg-gradient-to-br from-primary/10 to-secondary/10">
-          <CardHeader>
-            <CardTitle>Szybkie Akcje</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              <Link href="/symptom-check">
-                <Button
-                  variant="outline"
-                  className="w-full h-auto flex-col gap-2 py-4 rounded-xl"
-                >
-                  <Sparkles className="h-6 w-6" />
-                  <span className="text-sm">Sprawdź Objawy</span>
-                </Button>
-              </Link>
-              <Link href="/nagrody">
-                <Button
-                  variant="outline"
-                  className="w-full h-auto flex-col gap-2 py-4 rounded-xl"
-                >
-                  <Gift className="h-6 w-6" />
-                  <span className="text-sm">Wymień Nagrody</span>
-                </Button>
-              </Link>
-              <Link href="/mapa-miasta">
-                <Button
-                  variant="outline"
-                  className="w-full h-auto flex-col gap-2 py-4 rounded-xl"
-                >
-                  <MapPin className="h-6 w-6" />
-                  <span className="text-sm">Mapa Miasta</span>
-                </Button>
-              </Link>
-              <Link href="/smart-city-lodz">
-                <Button
-                  variant="outline"
-                  className="w-full h-auto flex-col gap-2 py-4 rounded-xl"
-                >
-                  <TrendingUp className="h-6 w-6" />
-                  <span className="text-sm">Smart City</span>
-                </Button>
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
-      </motion.div>
+
     </div>
   );
 }
