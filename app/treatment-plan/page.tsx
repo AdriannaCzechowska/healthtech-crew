@@ -8,10 +8,24 @@ import { Sidebar } from "@/components/core/Sidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
 import { ProgressBar } from "@/components/core/ProgressBar";
-import { TrendingUp, Activity, Droplet, Utensils, Pill } from "lucide-react";
+import { 
+  TrendingUp, 
+  Activity, 
+  Droplet, 
+  Utensils, 
+  Pill,
+  Calendar,
+  CheckCircle2,
+  Clock,
+  AlertCircle,
+  Bell,
+  Lightbulb,
+  Volume2
+} from "lucide-react";
 import { motion } from "framer-motion";
-import type { Task } from "@/lib/types";
+import type { Task, PreventiveEvent } from "@/lib/types";
 
 export default function TreatmentPlanPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -20,6 +34,11 @@ export default function TreatmentPlanPage() {
   const { data: treatmentPlan, isLoading } = useQuery({
     queryKey: ["treatmentPlan"],
     queryFn: api.getTreatmentPlan,
+  });
+
+  const { data: preventiveCalendar, isLoading: isLoadingCalendar } = useQuery({
+    queryKey: ["preventiveCalendar"],
+    queryFn: api.getPreventiveCalendar,
   });
 
   const updateTaskMutation = useMutation({
@@ -43,6 +62,28 @@ export default function TreatmentPlanPage() {
     }
   };
 
+  const getStatusIcon = (status: PreventiveEvent["status"]) => {
+    switch (status) {
+      case "done":
+        return <CheckCircle2 className="h-5 w-5 text-green-600" />;
+      case "upcoming":
+        return <Clock className="h-5 w-5 text-yellow-600" />;
+      case "overdue":
+        return <AlertCircle className="h-5 w-5 text-red-600" />;
+    }
+  };
+
+  const getStatusBadge = (status: PreventiveEvent["status"]) => {
+    switch (status) {
+      case "done":
+        return <Badge variant="secondary" className="rounded-full bg-green-100 text-green-800">✅ Wykonane</Badge>;
+      case "upcoming":
+        return <Badge variant="default" className="rounded-full bg-yellow-100 text-yellow-800">🟡 Nadchodzące</Badge>;
+      case "overdue":
+        return <Badge variant="destructive" className="rounded-full">🔴 Zaległe</Badge>;
+    }
+  };
+
   const groupedTasks = treatmentPlan?.tasks.reduce((acc, task) => {
     if (!acc[task.group]) {
       acc[task.group] = [];
@@ -50,7 +91,6 @@ export default function TreatmentPlanPage() {
     acc[task.group].push(task);
     return acc;
   }, {} as Record<string, Task[]>);
-
 
   const taskLabelTranslations: Record<string, string> = {
     "30 minutes walking": "30 minut spaceru",
@@ -61,7 +101,6 @@ export default function TreatmentPlanPage() {
     "Eat 5 portions of vegetables": "Zjedz 5 porcji warzyw",
   };
 
-
   const taskFrequencyTranslations: Record<string, string> = {
     "Daily": "Codziennie",
     "3x per week": "3 razy w tygodniu",
@@ -69,6 +108,36 @@ export default function TreatmentPlanPage() {
     "Monthly": "Raz w miesiącu",
   };
 
+  // Mock notifications and health tips
+  const notifications = [
+    {
+      id: "1",
+      type: "reminder",
+      message: "Nie zapomnij o badaniu cholesterolu — ostatnie zrobiłeś 18 miesięcy temu.",
+      priority: "high"
+    },
+    {
+      id: "2",
+      type: "event",
+      message: "W ten weekend darmowe badania słuchu w Galerii Łódzkiej.",
+      priority: "medium"
+    },
+    {
+      id: "3",
+      type: "tip",
+      message: "Czas na badanie krwi — w tym tygodniu mammobus na Retkini ma wolne miejsca.",
+      priority: "high"
+    }
+  ];
+
+  const healthTips = [
+    "Woda zamiast napoju gazowanego dziś = 1 punkt zdrowia.",
+    "Zrób 10 minut spaceru — obniżysz ryzyko cukrzycy o 25%.",
+    "Regularne badania profilaktyczne mogą wykryć choroby na wczesnym etapie.",
+    "Pamiętaj o codziennej dawce ruchu — nawet krótki spacer ma znaczenie!"
+  ];
+
+  const [currentTip] = useState(healthTips[Math.floor(Math.random() * healthTips.length)]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background">
@@ -89,11 +158,134 @@ export default function TreatmentPlanPage() {
             </div>
           ) : treatmentPlan ? (
             <div className="space-y-6">
-              {/* Karta z podsumowaniem */}
+              {/* Powiadomienia */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
+              >
+                <Card className="rounded-2xl border-2 shadow-lg bg-gradient-to-br from-blue-50/50 to-purple-50/50">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Bell className="h-5 w-5 text-primary" />
+                        <CardTitle className="text-lg">Powiadomienia</CardTitle>
+                      </div>
+                      <Button variant="ghost" size="sm" className="rounded-full">
+                        <Volume2 className="h-4 w-4 mr-2" />
+                        Tryb audio
+                      </Button>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    {notifications.map((notif, index) => (
+                      <motion.div
+                        key={notif.id}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.2, delay: index * 0.05 }}
+                        className={`p-3 rounded-xl border ${
+                          notif.priority === "high" 
+                            ? "bg-red-50 border-red-200" 
+                            : "bg-blue-50 border-blue-200"
+                        }`}
+                      >
+                        <p className="text-sm">{notif.message}</p>
+                      </motion.div>
+                    ))}
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Codzienna porada */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+              >
+                <Card className="rounded-2xl border-2 shadow-lg bg-gradient-to-br from-green-50/50 to-emerald-50/50">
+                  <CardContent className="pt-6">
+                    <div className="flex items-start gap-3">
+                      <div className="p-2 rounded-xl bg-green-100">
+                        <Lightbulb className="h-5 w-5 text-green-600" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-semibold mb-1">💡 Porada dnia</h3>
+                        <p className="text-sm text-muted-foreground">{currentTip}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Kalendarz Profilaktyki Osobistej */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.2 }}
+              >
+                <Card className="rounded-2xl border-2 shadow-lg">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-5 w-5 text-primary" />
+                        <CardTitle>Kalendarz Profilaktyki Osobistej</CardTitle>
+                      </div>
+                      <Button variant="outline" size="sm" className="rounded-full">
+                        Dodaj badanie
+                      </Button>
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      Integracja z programem Profilaktyka 40+ i przychodniami
+                    </p>
+                  </CardHeader>
+                  <CardContent>
+                    {isLoadingCalendar ? (
+                      <div className="text-center py-6 text-muted-foreground">
+                        Ładowanie kalendarza...
+                      </div>
+                    ) : preventiveCalendar && preventiveCalendar.length > 0 ? (
+                      <div className="space-y-3">
+                        {preventiveCalendar.map((event, index) => (
+                          <motion.div
+                            key={event.id}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.2, delay: index * 0.05 }}
+                            className="flex items-center justify-between p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors"
+                          >
+                            <div className="flex items-center gap-3 flex-1">
+                              {getStatusIcon(event.status)}
+                              <div className="flex-1">
+                                <p className="font-medium">{event.name}</p>
+                                <p className="text-xs text-muted-foreground mt-1">
+                                  {new Date(event.date).toLocaleDateString("pl-PL", {
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric",
+                                  })}
+                                </p>
+                              </div>
+                            </div>
+                            {getStatusBadge(event.status)}
+                          </motion.div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-6 text-muted-foreground">
+                        <Calendar className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                        <p className="text-sm">Brak zaplanowanych badań profilaktycznych</p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Karta z podsumowaniem */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.3 }}
               >
                 <Card className="rounded-2xl border-2 shadow-lg">
                   <CardHeader>
@@ -163,7 +355,7 @@ export default function TreatmentPlanPage() {
                         key={group}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: groupIndex * 0.1 }}
+                        transition={{ duration: 0.3, delay: (groupIndex + 4) * 0.1 }}
                       >
                         <Card className="rounded-2xl border-2 shadow-lg">
                           <CardHeader>
