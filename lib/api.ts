@@ -13,6 +13,7 @@ import type {
   Territory,
   NeighborhoodEvent,
   Reward,
+  PreventiveEvent,
 } from "./types";
 
 // Simulate network delay
@@ -184,6 +185,34 @@ const mockTreatmentPlan: TreatmentPlan = {
   tasks: mockTasks,
   startDate: "2025-09-01",
 };
+
+// === MOCK: KALENDARZ PROFILAKTYKI OSOBISTEJ ===
+const mockPreventiveCalendar: PreventiveEvent[] = [
+  {
+    id: "1",
+    name: "Morfologia krwi",
+    date: "2025-11-20",
+    status: "upcoming",
+  },
+  {
+    id: "2",
+    name: "Cytologia",
+    date: "2025-09-10",
+    status: "done",
+  },
+  {
+    id: "3",
+    name: "Pomiar ciśnienia tętniczego",
+    date: "2025-10-05",
+    status: "overdue",
+  },
+  {
+    id: "4",
+    name: "Mammografia",
+    date: "2025-12-01",
+    status: "upcoming",
+  },
+];
 
 const mockTeams: Team[] = [
   {
@@ -554,6 +583,34 @@ export const api = {
       return true;
     }
     return false;
+  },
+
+  // === KALENDARZ PROFILAKTYKI OSOBISTEJ ===
+  async getPreventiveCalendar(): Promise<PreventiveEvent[]> {
+    await delay();
+    return mockPreventiveCalendar;
+  },
+
+  async addPreventiveEvent(event: {
+    name: string;
+    date: string;
+    status?: "done" | "upcoming" | "overdue";
+  }): Promise<void> {
+    await delay();
+    mockPreventiveCalendar.push({
+      id: Date.now().toString(),
+      name: event.name,
+      date: event.date,
+      status: event.status || "upcoming",
+    });
+  },
+
+  async updatePreventiveEventStatus(eventId: string, status: "done" | "upcoming" | "overdue"): Promise<void> {
+    await delay();
+    const event = mockPreventiveCalendar.find((e) => e.id === eventId);
+    if (event) {
+      event.status = status;
+    }
   },
 };
 
