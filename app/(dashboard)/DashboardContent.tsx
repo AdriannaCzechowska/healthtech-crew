@@ -49,7 +49,7 @@ export function DashboardContent() {
   });
 
   const userTeam = teams?.find((t) => t.id === user?.teamId);
-  const unreadCount = messages?.filter((m) => m.unread).length || 0;
+  const unreadCount = messages?.filter((m) => m.unread)?.length ?? 0;
   const upcomingEvents = events?.filter((e) => e.status === "upcoming") || [];
 
   return (
@@ -77,7 +77,7 @@ export function DashboardContent() {
         >
           <KpiCard
             title="Twoje Punkty"
-            value={user?.points.toLocaleString() || "0"}
+            value={user?.points.toLocaleString() ?? "0"}
             icon={Trophy}
             description="+250 w tym tygodniu"
           />
