@@ -46,47 +46,95 @@ export default function VisitsPage() {
         return status;
     }
   };
+// --- Tłumaczenia nazw, miejsc i notatek wizyt ---
 
-  const VisitCard = ({ visit, index }: { visit: Visit; index: number }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.05 }}
-    >
-      <Card className="rounded-2xl p-4 border-2 shadow-md hover:shadow-lg transition-shadow">
-        <div className="flex items-start justify-between mb-3">
-          <div>
-            <h3 className="font-semibold text-lg">{visit.doctor}</h3>
-            <p className="text-sm text-muted-foreground">{visit.specialty}</p>
-          </div>
-          <Badge variant={getStatusVariant(visit.status)} className="rounded-full">
-            {translateStatus(visit.status)}
-          </Badge>
+const translateVisitNotes = (text: string) => {
+  switch (text) {
+    case "Follow-up for test results":
+      return "Wizyta kontrolna po wynikach badań";
+    case "Annual cardiovascular screening":
+      return "Coroczne badanie kardiologiczne";
+    case "Skin check completed":
+      return "Kontrola dermatologiczna zakończona";
+    case "Annual physical examination":
+      return "Roczne badanie ogólne";
+    default:
+      return text;
+  }
+};
+
+const translateSpecialty = (specialty: string) => {
+  switch (specialty) {
+    case "General Practice":
+      return "Medycyna rodzinna";
+    case "Cardiology":
+      return "Kardiologia";
+    case "Dermatology":
+      return "Dermatologia";
+    default:
+      return specialty;
+  }
+};
+
+const translatePlace = (place: string) => {
+  switch (place) {
+    case "City Health Clinic":
+      return "Miejska Przychodnia Zdrowia";
+    case "Cardiology Centre":
+      return "Centrum Kardiologiczne";
+    default:
+      return place;
+  }
+};
+
+// --- Komponent VisitCard ---
+
+const VisitCard = ({ visit, index }: { visit: Visit; index: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.3, delay: index * 0.05 }}
+  >
+    <Card className="rounded-2xl p-4 border-2 shadow-md hover:shadow-lg transition-shadow">
+      <div className="flex items-start justify-between mb-3">
+        <div>
+          <h3 className="font-semibold text-lg">{visit.doctor}</h3>
+          <p className="text-sm text-muted-foreground">
+            {translateSpecialty(visit.specialty ?? "")
+}
+          </p>
         </div>
-        <div className="space-y-2 text-sm">
-          <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4 text-muted-foreground" />
-            <span>
-              {new Date(visit.date).toLocaleDateString("pl-PL", {
-                weekday: "long",
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-            </span>
-          </div>
-          <div className="text-muted-foreground">
-            <p>📍 {visit.place}</p>
-          </div>
-          {visit.notes && (
-            <div className="mt-2 p-2 rounded-lg bg-muted/50">
-              <p className="text-xs">{visit.notes}</p>
-            </div>
-          )}
+        <Badge variant={getStatusVariant(visit.status)} className="rounded-full">
+          {translateStatus(visit.status)}
+        </Badge>
+      </div>
+
+      <div className="space-y-2 text-sm">
+        <div className="flex items-center gap-2">
+          <Calendar className="h-4 w-4 text-muted-foreground" />
+          <span>
+            {new Date(visit.date).toLocaleDateString("pl-PL", {
+              weekday: "long",
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })}
+          </span>
         </div>
-      </Card>
-    </motion.div>
-  );
+
+        <div className="text-muted-foreground">
+          <p>📍 {translatePlace(visit.place)}</p>
+        </div>
+
+        {visit.notes && (
+          <div className="mt-2 p-2 rounded-lg bg-muted/50">
+            <p className="text-xs">{translateVisitNotes(visit.notes)}</p>
+          </div>
+        )}
+      </div>
+    </Card>
+  </motion.div>
+);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background">

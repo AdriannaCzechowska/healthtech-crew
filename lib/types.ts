@@ -38,13 +38,15 @@ export type Visit = {
 
 export type LabResult = {
   id: string;
+  name?: string;
   date: string;
-  name: string;
-  fileUrl?: string;
-  repeatAt?: string;
   status: "Normal" | "Abnormal" | "Pending";
   value?: string;
+  fileUrl?: string;
+  repeatAt?: string;
+  description?: string; 
 };
+
 
 export type SymptomReport = {
   symptoms: string[];

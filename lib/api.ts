@@ -147,7 +147,7 @@ const mockLabResults: LabResult[] = [
     date: "2025-10-15",
     name: "Complete Blood Count",
     status: "Normal",
-    value: "All values within normal range",
+    value: "Wszystkie wartości w normie",
     fileUrl: "/results/cbc-2025-10-15.pdf",
   },
   {
@@ -163,7 +163,7 @@ const mockLabResults: LabResult[] = [
     date: "2025-08-20",
     name: "Vitamin D Level",
     status: "Abnormal",
-    value: "18 ng/mL (Low)",
+    value: "18 ng/mL (Niski)",
     repeatAt: "2025-11-20",
     fileUrl: "/results/vitamin-d-2025-08-20.pdf",
   },

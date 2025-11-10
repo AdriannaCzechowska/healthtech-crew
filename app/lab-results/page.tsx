@@ -19,6 +19,13 @@ export default function LabResultsPage() {
     queryFn: api.getLabResults,
   });
 
+
+
+  const getDescription = (result: LabResult): string | undefined => {
+    const anyResult = result as any; 
+    return anyResult.description ?? anyResult.summary ?? undefined;
+  };
+
   const getStatusVariant = (status: LabResult["status"]) => {
     switch (status) {
       case "Normal":
@@ -30,33 +37,61 @@ export default function LabResultsPage() {
     }
   };
 
-  const getStatusColor = (status: LabResult["status"]) => {
+  const getStatusLabel = (status: LabResult["status"]) => {
     switch (status) {
       case "Normal":
-        return "text-green-600";
+        return "Prawidłowy";
       case "Abnormal":
-        return "text-red-600";
+        return "Nieprawidłowy";
       case "Pending":
-        return "text-yellow-600";
+        return "W trakcie";
+      default:
+        return status;
     }
+  };
+
+  const translateTestName = (name?: string) => {
+    switch (name) {
+      case "Complete Blood Count":
+        return "Morfologia krwi";
+      case "Lipid Panel":
+        return "Profil lipidowy";
+      case "Vitamin D Level":
+        return "Poziom witaminy D";
+      case "Thyroid Function":
+        return "Funkcja tarczycy";
+      default:
+        return name || "Nieznane badanie";
+    }
+  };
+
+  const translateValue = (value?: string) => {
+    if (!value) return "";
+    return value
+      .replace("(Low)", "(Niski)")
+      .replace("(High)", "(Wysoki)")
+      .replace("(Normal)", "(Prawidłowy)")
+      .replace("Total cholesterol", "Cholesterol całkowity")
+      .replace("TSH", "TSH");
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background">
       <Header onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+
       <main className="md:pl-64 pt-16">
         <div className="container py-6 px-4">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">Lab Results</h1>
+            <h1 className="text-3xl font-bold mb-2">Wyniki badań laboratoryjnych</h1>
             <p className="text-muted-foreground">
-              View and track your laboratory test results
+              Przeglądaj i śledź swoje wyniki badań laboratoryjnych
             </p>
           </div>
 
           {isLoading ? (
             <div className="text-center py-12 text-muted-foreground">
-              Loading lab results...
+              Ładowanie wyników badań...
             </div>
           ) : labResults && labResults.length > 0 ? (
             <div className="grid gap-4 md:grid-cols-2">
@@ -83,9 +118,11 @@ export default function LabResultsPage() {
                             <FlaskConical className="h-5 w-5" />
                           </div>
                           <div>
-                            <CardTitle className="text-lg">{result.name}</CardTitle>
+                            <CardTitle className="text-lg">
+                              {translateTestName(result.name ?? "")}
+                            </CardTitle>
                             <p className="text-xs text-muted-foreground mt-1">
-                              {new Date(result.date).toLocaleDateString("en-GB", {
+                              {new Date(result.date).toLocaleDateString("pl-PL", {
                                 day: "numeric",
                                 month: "long",
                                 year: "numeric",
@@ -97,24 +134,33 @@ export default function LabResultsPage() {
                           variant={getStatusVariant(result.status)}
                           className="rounded-full"
                         >
-                          {result.status}
+                          {getStatusLabel(result.status)}
                         </Badge>
                       </div>
                     </CardHeader>
+
                     <CardContent className="space-y-3">
                       {result.value && (
                         <div className="p-3 rounded-xl bg-muted/50">
-                          <p className={`text-sm font-medium ${getStatusColor(result.status)}`}>
-                            {result.value}
+                          <p
+                            className={`text-sm font-medium ${
+                              result.status === "Abnormal"
+                                ? "text-red-600"
+                                : "text-green-600"
+                            }`}
+                          >
+                            {translateValue(result.value)}
                           </p>
                         </div>
                       )}
+
+                     
 
                       {result.fileUrl && (
                         <div className="flex items-center gap-2 p-2 rounded-lg bg-muted/30 text-sm">
                           <FileText className="h-4 w-4 text-muted-foreground" />
                           <span className="text-muted-foreground">
-                            Detailed report available
+                            Dostępny szczegółowy raport
                           </span>
                         </div>
                       )}
@@ -123,10 +169,12 @@ export default function LabResultsPage() {
                         <div className="flex items-start gap-2 p-3 rounded-xl bg-accent/10 border border-accent/20">
                           <AlertCircle className="h-4 w-4 text-accent mt-0.5" />
                           <div className="text-sm">
-                            <p className="font-medium">Repeat test recommended</p>
+                            <p className="font-medium">
+                              Zalecane powtórzenie badania
+                            </p>
                             <p className="text-xs text-muted-foreground mt-1">
-                              Scheduled for{" "}
-                              {new Date(result.repeatAt).toLocaleDateString("en-GB", {
+                              Zaplanowano na{" "}
+                              {new Date(result.repeatAt).toLocaleDateString("pl-PL", {
                                 day: "numeric",
                                 month: "long",
                                 year: "numeric",
@@ -143,9 +191,9 @@ export default function LabResultsPage() {
           ) : (
             <Card className="rounded-2xl p-12 text-center">
               <FlaskConical className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">No lab results yet</h3>
+              <h3 className="text-lg font-semibold mb-2">Brak wyników badań</h3>
               <p className="text-sm text-muted-foreground">
-                Your laboratory test results will appear here
+                Twoje wyniki badań laboratoryjnych pojawią się tutaj po ich dodaniu.
               </p>
             </Card>
           )}
@@ -154,4 +202,3 @@ export default function LabResultsPage() {
     </div>
   );
 }
-
